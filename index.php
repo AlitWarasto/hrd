@@ -15,28 +15,28 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
-                        <h1>Selamat datang di Inventory Panties Pizza</h1>
+                    <div class="col-md-10">
+                        <h1>Selamat datang di Sistem Manajemen Pegawai Panties Pizza</h1>
                         <p>Berdoalah Sebelum Bekerja</p>
                     </div>
-                    <div class="col-md-4">
-                        <a href="user/login.php" class="btn btn-secondary">Masuk</a>
+                    <div class="col-md-2 d-flex justify-content-end">
+                        <a href="user/login.php" class="btn btn-primary align-self-start">Login</a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section>
+    <!--<section>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 d-flex justify-content-around">
                     <a href="products/index.php" class="btn btn-success mb-1">Daftar Bahan</a>
                     <a href="outlet/index.php" class="btn btn-success mb-1">Daftar Outlet</a>
                     <a href="input/index.php" class="btn btn-success mb-1">Bahan Terbuang</a>
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 </body>
 </html>
