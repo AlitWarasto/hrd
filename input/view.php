@@ -27,7 +27,7 @@
 			<div class="col-md-2">
 				<div class="col-md-12 bg-dark navbar-dark rounded mb-2 pb-2">
 					<h2 class="text-light text-center">MENU</h2>
-					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Data</a>
+					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
 					<a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
 					<a href="../products/index.php" class="btn-info btn mb-1 col-md-12" >&#129385; Daftar Produk</a>
 					<a href="../report/index.php" class="btn-secondary btn mb-1 col-md-12" >&#128195; Laporan</a>

@@ -28,9 +28,9 @@
         </div>
         <div class="col-md-8">
             <div class="col-md-12 mb-3">
+                <a class="btn-success btn mb-1 mt-1" href="input/index.php">Data Karyawan</a>
                 <a class="btn-success btn mb-1 mt-1" href="products/index.php">Bahan List</a>
                 <a class="btn-success btn mb-1 mt-1" href="outlet/index.php">Outlet List</a>
-                <a class="btn-success btn mb-1 mt-1" href="input/index.php">Terbuang List</a>
             </div>
         </div>
     </div>

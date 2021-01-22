@@ -1,3 +1,38 @@
+<?php
+require_once("config.php");
+
+if(isset($_POST['login'])){
+
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+    $sql = "SELECT * FROM users WHERE username=:username OR email=:email";
+    $stmt = $db->prepare($sql);
+    
+    // bind parameter ke query
+    $params = array(
+        ":username" => $username,
+        ":email" => $username
+    );
+
+    $stmt->execute($params);
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // jika user terdaftar
+    if($user){
+        // verifikasi password
+        if(password_verify($password, $user["password"])){
+            // buat Session
+            session_start();
+            $_SESSION["user"] = $user;
+            // login sukses, alihkan ke halaman timeline
+            header("Location: timeline.php");
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,21 +47,33 @@
 </head>
 <body class="bg-light">
     <header>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10">
-                        <h1>Selamat datang di Sistem Manajemen Pegawai Panties Pizza</h1>
-                        <p>Berdoalah Sebelum Bekerja</p>
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-end">
-                        <a href="user/login.php" class="btn btn-primary align-self-start">Login</a>
-                    </div>
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="jumbotron">
+                    <h1 class="text-center">Selamat datang di Sistem Manajemen Pegawai<span class="text-center"><br>Panties Pizza</span></h1>
+                    <p class="text-center">Berdoalah Sebelum Bekerja</p>
                 </div>
             </div>
         </div>
     </header>
-
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <h4>Masuk ke SIMPEG Panties Pizza</h4>
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input class="form-control" type="text" name="username" placeholder="Username atau email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="password" placeholder="Password" />
+                    </div>
+                    <input type="submit" class="btn btn-success btn-block" name="login" value="Masuk" />
+                </form>
+            </div>
+        </div>
+    </div>
     <!--<section>
         <div class="container">
             <div class="row">
