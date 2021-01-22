@@ -132,12 +132,20 @@ if(isset($_POST['saveinput'])){
                         </select> 
                     </div>
                     <div class="form-group ">
-                        <label for="penempatan">Penempatan</label>
-                        <input class="form-control" type="text" name="penempatan" placeholder="Penempatan">
+                        <label for="penempatan">Penempatan</label><br>
+                        <select name="penempatan">
+                            <option value="Kantor Pusat">Kantor Pusat</option>
+                            <option value="Outlet">Outlet</option>
+                        </select>
                     </div>
                     <div class="form-group ">
-                        <label for="devisi">Devisi</label>
-                        <input class="form-control" type="text" name="devisi" placeholder="Devisi">
+                        <label for="devisi">Devisi</label><br>
+                        <select name="devisi">
+                            <option value="Operasional">Operasional</option>
+                            <option value="Accounting">Accounting</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="HRD">HRD</option>
+                        </select>
                     </div>
                     <div class="form-group ">
                         <label for="jabatan">Jabatan</label>
