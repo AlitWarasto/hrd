@@ -89,11 +89,11 @@ if(isset($_POST['saveinput'])){
                     </div>
                     <div class="form-group ">
                         <label for="alamat">Alamat</label>
-                        <input class="form-control" type="text" name="alamat" placeholder="Alamat Asal">
+                        <textarea class="form-control" type="text" name="alamat" placeholder="Alamat Asal"></textarea>
                     </div>
                     <div class="form-group ">
                         <label for="domisili">Domisili</label>
-                        <input class="form-control" type="text" name="domisili" placeholder="Domisili Sekarang">
+                        <textarea class="form-control" type="text" name="domisili" placeholder="Domisili Sekarang"></textarea>
                     </div>
                     <div class="form-group ">
                         <label for="noktp">Nomor KTP</label>

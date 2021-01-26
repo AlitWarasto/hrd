@@ -60,7 +60,7 @@ if(isset($_POST['login'])){
                     <img class="h-bg img-fluid" src="img/logo.png">
                 </div>
                 <div class="col-md-4 rounded rounded-sm pt-3 pb-3 glass mb-3">
-                    <h4 class="jt">Masuk ke SIMPEG Panties Pizza</h4>
+                    <h4 class="jt text-center">Masuk ke SIMPEG<br><span>Panties Pizza</span></h4>
                     <form action="" method="POST">
                         <div class="form-group">
                             <label for="username">Username</label>
