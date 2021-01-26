@@ -73,14 +73,15 @@ if(isset($_POST['saveinput'])){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
     <div class="container">
         <div class="col-md-12 d-flex justify-content-center">
-            <h1>Input Karyawan Baru<span><br>Panties Pizza</span></h1>
+            <h1 class="jt">Input Karyawan Baru<span><br>Panties Pizza</span></h1>
         </div>
     	<div class=" d-flex justify-content-center">
-            <div class="col-md-4 bg-light border border-secondary pb-3 pt-3 rounded rounded-sm">
+            <div class="glass col-md-4 pb-3 pt-3 rounded rounded-sm jt">
         		<form action="" method="POST">
                     <div class="form-group ">
                         <label for="namakaryawan">Nama Karyawan</label>

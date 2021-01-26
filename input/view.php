@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 	<?php 
@@ -22,11 +23,11 @@
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-12">
-				<h1 class="text-center">Data Detail Karyawan <span><br><?php echo $namakaryawan; ?></span></h1>
+				<h1 class="text-center jt">Data Detail Karyawan <span><br><?php echo $namakaryawan; ?></span></h1>
 			</div>
-			<div class="col-md-2">
-				<div class="col-md-12 bg-dark navbar-dark rounded mb-2 pb-2">
-					<h2 class="text-light text-center">MENU</h2>
+			<div class="col-md-3">
+				<div class="glass col-md-12 rounded mb-2 pb-2">
+					<h2 class="jt text-center">MENU</h2>
 					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
 					<a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
 					<a href="../products/index.php" class="btn-info btn mb-1 col-md-12" >&#129385; Daftar Produk</a>
@@ -35,8 +36,8 @@
 					<a href="../user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<table class="table table-dark table-striped">
+			<div class="col-md-6 tbl">
+				<table class="table table-striped glass jt">
 				<?php
 				$stmt = $db->prepare("SELECT * FROM karyawan WHERE idkar=$idview ORDER BY idkar DESC");
     			$stmt->execute();
