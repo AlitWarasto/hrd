@@ -122,7 +122,8 @@ if(isset($_POST['saveinput'])){
                     </div>
                     <div class="form-group ">
                         <label for="pendidikan">Pendidikan Terakhir</label>
-                        <input class="form-control" name="pendidikan" type="text" placeholder="Pendidikan Terakhir">                    </div>
+                        <input class="form-control" name="pendidikan" type="text" placeholder="Pendidikan Terakhir">
+                    </div>
                     <div class="form-group ">
                         <label for="pernikahan">Status Pernikahan</label><br>
                         <select name="pernikahan">

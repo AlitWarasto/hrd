@@ -1,20 +1,21 @@
 <?php
 	require_once("../config.php");
-	require_once("../user/auth.php"); 
+	require_once("../user/auth.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Detail Data Karyawan</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-	<?php 
+	<?php
 	if (isset($_GET['id'])) {
 		$idview = $_GET['id'];
 		$nk = $db->prepare("SELECT namakaryawan FROM karyawan WHERE idkar=$idview");
@@ -72,17 +73,18 @@
 								      </div>
 
 								      <!-- Modal body -->
-							        <form action="" method="POST" enctype="multipart/form-data">
+							        <form action="edit.php" method="POST" enctype="multipart/form-data">
 								      	<div class="modal-body">
 			                    <div class="form-group ">
 			                        <label for="namakaryawan">Nama Karyawan</label>
+			                        <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
 			                        <input class="form-control" type="text" name="namakaryawan" placeholder="<?php echo $namakaryawan; ?>">
 			                    </div>
 								      	</div>
 
 								      <!-- Modal footer -->
 									      <div class="modal-footer">
-									      	<input type="submit" class="btn btn-success" data-dismiss="modal" name="savenk" value="Simpan" />
+									      	<input type="submit" class="btn btn-success" name="savenk" value="Simpan" />
 									      </div>
 		                  </form>
 
