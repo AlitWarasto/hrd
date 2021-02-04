@@ -48,99 +48,116 @@ if(isset($_POST['editinput'])){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
+<?php
+ 	if (isset($_GET['id'])) {
+ 		$id = $_GET['id'];
+	 	$stmt = $db->prepare("SELECT * FROM karyawan WHERE idkar=$id");
+		$stmt->execute();
+		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+		extract($row);
+		$idbh = $row['idkar'];
+	}
+?>
 <body>
 	<div class="container">
-		<div class="col-md-12 d-flex justify-content-center">
-			<h1>Edit Bahan Terbuang</h1>
-		</div>
-		<?php
-	 	if (isset($_GET['id'])) {
-	 		$id = $_GET['id'];
-		 	$stmt = $db->prepare("SELECT * FROM input WHERE idinput=$id");
-			$stmt->execute();
-			$row=$stmt->fetch(PDO::FETCH_ASSOC);
-			extract($row);
-			$idbh = $row['idbahan'];
-		?>
-		<div class="d-flex justify-content-center">
-        	<div class="col-md-4 bg-light border border-secondary pb-3 pt-3 rounded rounded-sm">
-				<form action="" method="POST">
-					<div class="form-group">
-						<input type="hidden" name="inputid" value="<?php echo $idinput ?>">
-						<label for="name">Nama Produk</label>
-						<select name="bahanid">
-					    	<?php
-					    	$einbb = $db->prepare("SELECT * FROM bahanbaku WHERE idbb=$idbh");
-					    	$einbb->execute();
-					    	$rowbb=$einbb->fetch(PDO::FETCH_ASSOC);
-				    		extract($rowbb); ?>
-				    		<option class="form-control" value="<?php echo $idbb; ?>"><?php echo $namabb; ?></option>
-				    		<?php
-					    	$stmtb = $db->prepare("SELECT * FROM bahanbaku");
-					    	$stmtb->execute();
-					    	While ($brow=$stmtb->fetch(PDO::FETCH_ASSOC)){
-					    		extract($brow); ?>
-					    		<option value="<?php echo $idbb; ?>"><?php echo $namabb; ?></option>
-					    	<?php
-					    	}
-					    	?>
-					    </select>
-					    <div class="form-group ">
-		    				<label for="etanggal">Tanggal</label>
-		    				<input class="form-control" type="date" name="etanggal" value="<?php echo $tanggal; ?>">
-	    				</div>
-	    				<label for="eoutlet">Outlet</label>
-	    				<select name="eoutlet">
-					    	<?php
-					    	$eino = $db->prepare("SELECT * FROM outlet WHERE idoutlet=$outlet");// belum selesai lanjut disini
-					    	$eino->execute();
-					    	$rowo=$eino->fetch(PDO::FETCH_ASSOC);
-				    		extract($rowo); ?>
-				    		<option class="form-control" value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
-				    		<?php
-					    	$stmto = $db->prepare("SELECT * FROM outlet");
-					    	$stmto->execute();
-					    	While ($orow=$stmto->fetch(PDO::FETCH_ASSOC)){
-					    		extract($orow); ?>
-					    		<option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
-					    	<?php
-					    	}
-					    	?>
-					    </select>
-					    <div class="form-group ">
-					    	<label for="ebuat">Buat Bahan Baku</label>
-					    	<input  class="form-control" type="text" name="ebuat" value="<?php echo $buat ?>">
-				    	</div>
-				    	<div class="form-group ">
-					    	<label for="ebuat">Buang Bahan Baku</label>
-					    	<input class="form-control" type="text" name="ebuang" value="<?php echo $buang ?>">
-				    	</div>
-				    	<div class="form-group">
-	                    <label for="ejamhabis">Jam Habis</label>
-	                    <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-	                        <input type="text" name="ejamhabis" value="<?php echo $jamhabis ?>" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
-	                        <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-	                            <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
-	                        </div>
-	                    </div>
-	                </div>
-					</div>
-					<input type="submit" class="btn btn-success btn-block" name="editinput" value="Update Now" />
-					<a class="btn btn-danger btn-block" href="../input/index.php">Cancel</a>
-				</form>
-			</div>
-		</div>
-		<?php
-		}
-		?>
-	</div>
-	<script type="text/javascript">
-        $(function () {
-            $('#datetimepicker3').datetimepicker({
-                format: 'LT'
-            });
-        });
-    </script>
+        <div class="col-md-12 d-flex justify-content-center">
+            <h1 class="jt">Edit Karyawan<br><span><?php echo $namakaryawan; ?></span></h1>
+        </div>
+    	<div class=" d-flex justify-content-center">
+            <div class="glass col-md-4 pb-3 pt-3 rounded rounded-sm jt">
+        		<form action="" method="POST" enctype="multipart/form-data">
+                    <div class="form-group ">
+                        <label for="namakaryawan">Nama Karyawan</label>
+                        <input class="form-control" type="text" name="namakaryawan" placeholder="<?php echo $namakaryawan; ?>">
+                    </div>
+                    <div class="form-group ">
+                        <label for="foto">Foto Karyawan</label>
+                        <input type="file" name="foto">
+                    </div>
+                    <div class="form-group ">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" type="text" name="alamat" placeholder="<?php echo $alamat; ?>"></textarea>
+                    </div>
+                    <div class="form-group ">
+                        <label for="domisili">Domisili</label>
+                        <textarea class="form-control" type="text" name="domisili" placeholder="<?php echo $domisili; ?>"></textarea>
+                    </div>
+                    <div class="form-group ">
+                        <label for="noktp">Nomor KTP</label>
+                        <input class="form-control" type="text" name="noktp" placeholder="<?php echo $noktp; ?>">
+                    </div>
+                    <div class="form-group ">
+                        <label for="nohp">Nomor Handphone</label>
+                        <input class="form-control" type="text" name="nohp" placeholder="<?php echo $nohp; ?>">
+                    </div>
+                    <div class="form-group ">
+                        <label for="ttgll">Tempat & Tanggal Lahir</label>
+                        <input class="form-control" name="ttgll" type="date" placeholder="<?php echo $ttgll; ?>">
+                    </div>
+                    <div class="form-group ">
+                        <label for="pendidikan">Pendidikan Terakhir</label>
+                        <input class="form-control" name="pendidikan" type="text" placeholder="Pendidikan Terakhir">                    </div>
+                    <div class="form-group ">
+                        <label for="pernikahan">Status Pernikahan</label><br>
+                        <select name="pernikahan">
+                            <option value="Menikah">Menikah</option>
+                            <option value="Belum Menikah">Belum Menikah</option>
+                            <option value="Janda">Janda</option>
+                            <option value="Duda">Duda</option>
+                        </select> 
+                    </div>
+                    <div class="form-group ">
+                        <label for="tglmasuk">Tanggal Masuk</label>
+                        <input class="form-control" name="tglmasuk" type="date">
+                    </div>
+                    <div class="form-group ">
+                        <label for="status">Status Karyawan</label><br>
+                        <select name="status">
+                            <option value="Aktif">Aktif</option>
+                            <option value="Non Aktif">Non Aktif</option>
+                            <option value="Resign">Resign</option>
+                            <option value="PHK">PHK</option>
+                        </select> 
+                    </div>
+                    <div class="form-group ">
+                        <label for="penempatan">Penempatan</label><br>
+                        <select name="penempatan">
+                            <option value="Kantor Pusat">Kantor Pusat</option>
+                            <option value="Outlet">Outlet</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="devisi">Devisi</label><br>
+                        <select name="devisi">
+                            <option value="Operasional">Operasional</option>
+                            <option value="Accounting">Accounting</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="HRD">HRD</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="jabatan">Jabatan</label>
+                        <input class="form-control" type="text" name="jabatan" placeholder="Jabatan">
+                    </div>
+                    <div class="form-group ">
+                        <label for="cuti">cuti</label>
+                        <input class="form-control" type="text" name="cuti" placeholder="Sisa Cuti">
+                    </div>
+                    <div class="form-group ">
+                        <label for="sp">Surat Peringatan</label>
+                        <input class="form-control" type="text" name="sp" placeholder="Surat Peringatan">
+                    </div>
+                    <div class="form-group ">
+                        <label for="gaji">Gaji</label>
+                        <input class="form-control" type="text" name="gaji" placeholder="Gaji">
+                    </div>
+        			<input type="submit" class="btn btn-success btn-block " name="saveinput" value="Simpan" />
+                    <a class="btn btn-danger btn-block " href="../input/index.php">Cancel</a>
+        		</form>
+    	   </div>
+        </div>
+    </div>
 </body>
 </html>

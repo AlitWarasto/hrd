@@ -22,13 +22,17 @@ if(isset($_POST['saveinput'])){
     $sp = $_POST['sp'];
     $gaji = $_POST['gaji'];
 
+    /*=== upload file ===*/
+    $foto = $_FILES['foto']['name'];
+    $ext = pathinfo($foto, PATHINFO_EXTENSION);
+    $newname = $idkar.'.'.$ext;
 
-    // menyiapkan query
-    $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji) 
-            VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji)";
+    /* menyiapkan query */
+    $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
+            VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji, :foto)";
     $stmt = $db->prepare($sql);
 
-    // bind parameter ke query
+    /* bind parameter ke query */
     $params = array(
         ":idkar" => $idkar,
         ":namakaryawan" => $namakaryawan,
@@ -47,13 +51,18 @@ if(isset($_POST['saveinput'])){
         ":cuti" => $cuti,
         ":sp" => $sp,
         ":gaji" => $gaji,
+        ":foto" => $newname,
     );
 
-    // eksekusi query untuk menyimpan ke database
+    /* eksekusi query untuk menyimpan ke database */
     $saved = $stmt->execute($params);
 
-    // jika query simpan berhasil, maka user sudah terdaftar
-    // maka alihkan ke halaman login
+    /* upload file ke destinasi folder */
+    move_uploaded_file($_FILES['foto']['tmp_name'], "../img/foto/".$newname);
+
+    /*  jika query simpan berhasil, maka user sudah terdaftar
+         maka alihkan ke halaman login
+    */
     if($saved) {
         header("Location: index.php");
     }
@@ -82,10 +91,14 @@ if(isset($_POST['saveinput'])){
         </div>
     	<div class=" d-flex justify-content-center">
             <div class="glass col-md-4 pb-3 pt-3 rounded rounded-sm jt">
-        		<form action="" method="POST">
+        		<form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group ">
                         <label for="namakaryawan">Nama Karyawan</label>
                         <input class="form-control" type="text" name="namakaryawan" placeholder="Nama Karyawan">
+                    </div>
+                    <div class="form-group ">
+                        <label for="foto">Foto Karyawan</label>
+                        <input type="file" name="foto">
                     </div>
                     <div class="form-group ">
                         <label for="alamat">Alamat</label>
@@ -164,68 +177,11 @@ if(isset($_POST['saveinput'])){
                         <label for="gaji">Gaji</label>
                         <input class="form-control" type="text" name="gaji" placeholder="Gaji">
                     </div>
-                    
-        			<!--<div class="form-group ">
-                        <label for="bbid">Bahan Baku</label>
-                        <select name="bbid">
-                            <?php
-                                $bbcon = $db->prepare("SELECT * FROM bahanbaku");
-                                $bbcon->execute();
-                                While ($row=$bbcon->fetch(PDO::FETCH_ASSOC)){
-                                    extract($row); ?>
-                                    <option value="<?php echo $idbb; ?>"><?php echo $namabb; ?></option>
-                                <?php
-                                }
-                                ?>
-                        </select>
-                        <div class="form-group ">
-            				<label for="tanggal">Tanggal</label>
-            				<input class="form-control" type="date" name="tanggal">
-            			</div>
-                    </div>
-                    <div class="form-group ">
-                        <label for="outletid">Outlet</label>
-                        <select name="namaoutlet">
-                            <?php
-                                $bbcon = $db->prepare("SELECT * FROM outlet");
-                                $bbcon->execute();
-                                While ($row=$bbcon->fetch(PDO::FETCH_ASSOC)){
-                                    extract($row); ?>
-                                    <option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
-                                <?php
-                                }
-                                ?>
-                        </select>
-                    </div>
-                    <div class="form-group ">
-        				<label for="buat">Buat Bahan Baku</label>
-        				<input class="form-control" type="text" name="buat" placeholder="Buat">
-        			</div>
-                    <div class="form-group ">
-                        <label for="buang">Buang Bahan Baku</label>
-                        <input class="form-control" type="text" name="buang" placeholder="Buang">
-                    </div>
-                    <div class="form-group">
-                        <label for="jamhabis">Jam Habis</label>
-                        <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                            <input type="text" name="jamhabis" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
-                            <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
-                            </div>
-                        </div>
-                    </div>-->
         			<input type="submit" class="btn btn-success btn-block " name="saveinput" value="Simpan" />
                     <a class="btn btn-danger btn-block " href="../input/index.php">Cancel</a>
         		</form>
     	   </div>
         </div>
     </div>
-   <!--<script type="text/javascript">
-        $(function () {
-            $('#datetimepicker3').datetimepicker({
-                format: 'LT'
-            });
-        });
-    </script>-->
 </body>
 </html>

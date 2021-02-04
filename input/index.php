@@ -29,17 +29,36 @@ require_once("../user/auth.php");
 					<a href="../user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
 				</div>
 			</div>
-			<div class="col-md-6 tbl">
+			<div class="col-md-9 tbl">
+				<?php
+				 	$nstmt = $db->prepare("SELECT * FROM karyawan ORDER BY namakaryawan ASC");
+		    	$nstmt->execute();
+		    	While ($nrow=$nstmt->fetch(PDO::FETCH_ASSOC)){
+					extract($nrow);
+				?>
+				<div class="card m-1 float-left glass col-md-3">
+					<img src="../img/foto/<?php echo $foto; ?>" class="card-img-top img-thumbnail mt-3">
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $namakaryawan; ?></h5>
+						<p class="card-text"><?php echo $idkar; ?></p>
+						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
+
+			<!--<div class="col-md-8 tbl">
 				<table class="jt table table-striped table-hover glass">
 					<thead>
 						<tr>
 							<th>ID Karyawan</th>
 							<th>Nama Karyawan</th>
 							<th>Detail</th>
+							<th>Edit</th>
 						</tr>
 					</thead>
 					<?php
-				 	$stmt = $db->prepare("SELECT * FROM karyawan ORDER BY idkar DESC");
+				 	$stmt = $db->prepare("SELECT * FROM karyawan ORDER BY namakaryawan ASC");
 			    	$stmt->execute();
 			    	While ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 					extract($row);
@@ -48,7 +67,8 @@ require_once("../user/auth.php");
 						<tr>
 							<td><?php echo $idkar; ?></td>
 							<td><?php echo $namakaryawan; ?></td>
-							<td><a href="view.php?id=<?php echo $idkar; ?>" style="color: #50c425">detail</a></td>
+							<td><a href="view.php?id=<?php echo $idkar; ?>" style="color: #50c425">&#128064</a></td>
+							<td><a href="edit.php?id=<?php echo $idkar; ?>" style="color: #50c425">&#10002</a></td>
 						</tr>
 				
 					<?php
@@ -56,7 +76,7 @@ require_once("../user/auth.php");
 				 	?>
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </body>
