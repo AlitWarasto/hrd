@@ -4,12 +4,16 @@ require_once("../user/auth.php");
 
 if (isset($_POST['savenk'])) {
     $idnk = $_POST['idnk'];
-    $updnk = $_POST['namakaryawan'];
-    $unk = $db->prepare("UPDATE `karyawan` SET `namakaryawan` = '$updnk' WHERE `karyawan`.`idkar`=$idnk");
-    $unk->execute();
+    $updk = $_POST['namakaryawan'];
+    $xudk = $db->prepare("UPDATE `karyawan` SET `namakaryawan` = '$updk' WHERE `karyawan`.`idkar`=$idnk");
+    $xudk->execute();
     header('location: view.php?id='.$idnk);
-} else {
-    print_r("ERROR");
+} elseif(isset($_POST['saveal'])) {
+    $idnk = $_POST['idnk'];
+    $updk = $_POST['alamat'];
+    $xudk = $db->prepare("UPDATE `karyawan` SET `alamat` = '$updk' WHERE `karyawan`.`idkar`=$idnk");
+    $xudk->execute();
+    header('location: view.php?id='.$idnk);
 }
 
 ?>
