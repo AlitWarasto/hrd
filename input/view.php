@@ -83,7 +83,7 @@
 								</tr>
 								<tr>
 									<td>Tempat & tgl Lahir</td>
-									<td><?php echo $ttgll; ?></td>
+									<td><?php $date = date_create($ttgll); echo $tempat.", ". date_format($date,"d-F-Y"); ?></td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#ttgll">Edit</button></td>
 								</tr>
 								<tr>
@@ -197,7 +197,7 @@
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="saveal" value="Simpan" />
+		      	<input type="submit" class="btn btn-success" name="savealamat" value="Simpan" />
 		      </div>
         </form>
 
@@ -227,7 +227,7 @@
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="savedo" value="Simpan" />
+		      	<input type="submit" class="btn btn-success" name="savedomisili" value="Simpan" />
 		      </div>
         </form>
 
@@ -257,7 +257,7 @@
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="savektp" value="Simpan" />
+		      	<input type="submit" class="btn btn-success" name="savenoktp" value="Simpan" />
 		      </div>
         </form>
 
@@ -287,7 +287,7 @@
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="savehp" value="Simpan" />
+		      	<input type="submit" class="btn btn-success" name="savenohp" value="Simpan" />
 		      </div>
         </form>
 
@@ -309,9 +309,11 @@
         <form action="edit.php" method="POST" enctype="multipart/form-data">
 	      	<div class="modal-body">
             <div class="form-group ">
-                <label for="ttgll">Tempat Tgl Lahir</label>
+                <label for="tempat">Tempat Lahir</label>
                 <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
-                <input class="form-control" type="text" name="ttgll" placeholder="<?php echo $ttgll; ?>">
+                <input class="form-control" type="text" name="tempat" placeholder="<?php echo $tempat; ?>"><br>
+                <label for="ttgll">Tgl Lahir</label>
+                <input class="form-control" type="date" name="ttgll" placeholder="<?php echo $ttgll; ?>">
             </div>
 	      	</div>
 
@@ -377,14 +379,14 @@
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="savepend" value="Simpan" />
+		      	<input type="submit" class="btn btn-success" name="savependidikan" value="Simpan" />
 		      </div>
         </form>
 
 	    </div>
 	  </div>
 	</div>
-	<!-- Pendidikan -->
+	<!-- Pernikahan -->
 	<div class="modal" id="pernikahan">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -399,15 +401,276 @@
         <form action="edit.php" method="POST" enctype="multipart/form-data">
 	      	<div class="modal-body">
             <div class="form-group ">
-                <label for="pernikahan">Pendidikan</label>
-                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
-                <input class="form-control" type="text" name="status" placeholder="<?php echo $pernikahan; ?>">
+              <label for="pernikahan">Pendidikan</label>
+              <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+              <select name="pernikahan">
+                <option value="Menikah">Menikah</option>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Janda">Janda</option>
+                <option value="Duda">Duda</option>
+              </select>
             </div>
 	      	</div>
 
 	      <!-- Modal footer -->
 		      <div class="modal-footer">
 		      	<input type="submit" class="btn btn-success" name="savepernikahan" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Tanggal Masuk -->
+	<div class="modal" id="tglmasuk">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Tanggal pertama masuk kerja</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="tglmasuk">Masukan tanggal masuk</label>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input class="form-control" type="date" name="tglmasuk" placeholder="<?php echo $tglmasuk; ?>">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savetglmasuk" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Status -->
+	<div class="modal" id="status">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Status Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+              <label for="status">Masukan Status Karyawan</label><br>
+              <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+              <select name="status">
+                <option value="Aktif">Aktif</option>
+                <option value="Non Aktif">Non Aktif</option>
+                <option value="Resign">Resign</option>
+                <option value="PHK">PHK</option>
+              </select>
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savestatus" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Penempatan -->
+	<div class="modal" id="penempatan">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Penempatan Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="penempatan">Masukan Penempatan Karyawan</label>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input class="form-control" type="text" name="penempatan" placeholder="<?php echo $penempatan; ?>">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savepenempatan" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- devisi -->
+	<div class="modal" id="devisi">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Devisi Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+              <label for="devisi">Masukan Devisi Karyawan</label><br>
+              <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+              <select name="devisi">
+                <option value="Operasional">Operasional</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Marketing">Marketing</option>
+                <option value="HRD">HRD</option>
+              </select>
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savedevisi" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Jabatan -->
+	<div class="modal" id="jabatan">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Jabatan Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="jabatan">Masukan Jabatan Karyawan</label>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input class="form-control" type="text" name="jabatan" placeholder="<?php echo $jabatan; ?>">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savejabatan" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Cuti -->
+	<div class="modal" id="cuti">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Sisa Cuti Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="cuti">Masukan Sisa Cuti Karyawan</label>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input class="form-control" type="text" name="cuti" placeholder="<?php echo $cuti; ?>">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savecuti" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- SP -->
+	<div class="modal" id="sp">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Peringatan(SP) Karyawan</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+              <label for="sp">Masukan Peringatan(SP) Karyawan</label><br>
+              <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+              <select name="sp">
+              	<option value="Tidak Ada">Tidak Ada</option>
+                <option value="Surat Teguran">Surat Teguran</option>
+                <option value="SP 1">SP 1</option>
+                <option value="SP 2">SP 2</option>
+                <option value="SP 3">SP 3</option>
+              </select>
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savesp" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
+	</div>
+	<!-- Gaji -->
+	<div class="modal" id="gaji">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Gaji Karyawan Bulan Ini</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="gaji">Masukan Gaji Karyawan Bulan Ini</label>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input class="form-control" type="text" name="gaji" placeholder="<?php echo $gaji; ?>">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savegaji" value="Simpan" />
 		      </div>
         </form>
 

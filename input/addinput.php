@@ -10,6 +10,7 @@ if(isset($_POST['saveinput'])){
     $domisili = $_POST['domisili'];
     $noktp = $_POST['noktp'];
     $nohp = $_POST['nohp'];
+    $tempat = $_POST['tempat'];
     $ttgll = $_POST['ttgll'];
     $pendidikan = $_POST['pendidikan'];
     $pernikahan = $_POST['pernikahan'];
@@ -29,7 +30,7 @@ if(isset($_POST['saveinput'])){
 
     /* menyiapkan query */
     $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
-            VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji, :foto)";
+            VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :tempat, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji, :foto)";
     $stmt = $db->prepare($sql);
 
     /* bind parameter ke query */
@@ -40,6 +41,7 @@ if(isset($_POST['saveinput'])){
         ":domisili" => $domisili,
         ":noktp" => $noktp,
         ":nohp" => $nohp,
+        ":tempat" => $tempat,
         ":ttgll" => $ttgll,
         ":pendidikan" => $pendidikan,
         ":pernikahan" => $pernikahan,
@@ -117,7 +119,9 @@ if(isset($_POST['saveinput'])){
                         <input class="form-control" type="text" name="nohp" placeholder="Nomor Handphone">
                     </div>
                     <div class="form-group ">
-                        <label for="ttgll">Tempat & Tanggal Lahir</label>
+                        <label for="tempat">Tempat Lahir</label>
+                        <input class="form-control" name="tempat" type="text">
+                        <label for="ttgll">Tanggal Lahir</label>
                         <input class="form-control" name="ttgll" type="date">
                     </div>
                     <div class="form-group ">
@@ -144,7 +148,7 @@ if(isset($_POST['saveinput'])){
                             <option value="Non Aktif">Non Aktif</option>
                             <option value="Resign">Resign</option>
                             <option value="PHK">PHK</option>
-                        </select> 
+                        </select>
                     </div>
                     <div class="form-group ">
                         <label for="penempatan">Penempatan</label><br>
@@ -171,8 +175,14 @@ if(isset($_POST['saveinput'])){
                         <input class="form-control" type="text" name="cuti" placeholder="Sisa Cuti">
                     </div>
                     <div class="form-group ">
-                        <label for="sp">Surat Peringatan</label>
-                        <input class="form-control" type="text" name="sp" placeholder="Surat Peringatan">
+                        <label for="sp">Surat Peringatan</label><br>
+                        <select name="sp">
+                            <option value="Tidak Ada">Tidak Ada</option>
+                            <option value="Surat Teguran">Surat Teguran</option>
+                            <option value="SP 1">SP 1</option>
+                            <option value="SP 2">SP 2</option>
+                            <option value="SP 3">SP 3</option>
+                        </select>
                     </div>
                     <div class="form-group ">
                         <label for="gaji">Gaji</label>
