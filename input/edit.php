@@ -8,6 +8,50 @@ if (isset($_POST['savenk'])) {
     $xudk = $db->prepare("UPDATE `karyawan` SET `namakaryawan` = '$updk' WHERE `karyawan`.`idkar`=$idnk");
     $xudk->execute();
     header('location: view.php?id='.$idnk);
+} elseif(isset($_POST['savefoto'])) {  /*Edit File FOTO*/
+    $idnk = $_POST['idnk'];
+    $nfoto = $_FILES['foto']['name'];
+    if ($nfoto=="") {
+        ?>
+        <script>alert('File foto tidak boleh kosong');location.replace('view.php?id='+<?php echo $idnk; ?>);</script>
+    <?php
+    }
+    $cfoto = $db->prepare("SELECT foto FROM karyawan WHERE idkar=$idnk");
+    $cfoto->execute();
+    $frow = $cfoto->fetch(PDO::FETCH_ASSOC);
+    extract($frow);
+    $ffoto = "../img/foto/".$foto;
+    $ext = pathinfo($nfoto, PATHINFO_EXTENSION);
+    $newname = $idnk.'.'.$ext;
+    if (isset($foto) && $foto==$newname) {
+        if (file_exists($ffoto)) {
+            unlink($ffoto); /*Delete file lama*/
+            move_uploaded_file($_FILES['foto']['tmp_name'], $ffoto);
+            if (file_exists($ffoto)) {
+                header('location: view.php?id='.$idnk);
+            } else {
+                $handle = "<script type='text/javascript'>
+                          alert('Upload Foto GAGAL');
+                          location.replace('view.php?id='".$idnk.");
+                        </script>";
+                echo $handle;
+            }
+        }
+    } else {
+        $ffoto = "../img/foto/".$newname;
+        $infoto = $db->prepare("UPDATE `karyawan` SET `foto` = '$newname' WHERE `karyawan`.`idkar`=$idnk");
+        $infoto->execute();
+        move_uploaded_file($_FILES['foto']['tmp_name'], $ffoto);
+        if (file_exists($ffoto)) {
+            header('location: view.php?id='.$idnk);
+        } else {
+            $handle = "<script type='text/javascript'>
+                      alert('Upload Foto GAGAL');
+                      location.replace('view.php?id='".$idnk.");
+                    </script>";
+            echo $handle;
+        }
+    } 
 } elseif(isset($_POST['savealamat'])) {
     $idnk = $_POST['idnk'];
     $updk = $_POST['alamat'];

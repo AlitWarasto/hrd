@@ -24,8 +24,6 @@ require_once("../user/auth.php");
 					<h2 class="jt ext-light text-center">MENU</h2>
 					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
 					<a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
-					<a href="../products/index.php" class="btn-info btn mb-1 col-md-12" >&#129385; Daftar Produk</a>
-					<a href="../report/index.php" class="btn-secondary btn mb-1 col-md-12" >&#128195; Laporan</a>
 					<a href="../user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
 				</div>
 			</div>
@@ -35,48 +33,27 @@ require_once("../user/auth.php");
 		    	$nstmt->execute();
 		    	While ($nrow=$nstmt->fetch(PDO::FETCH_ASSOC)){
 					extract($nrow);
+					$lkata = 2;
+			    $xnk = explode(' ',str_replace(array("\n","\r","\t"),'',strip_tags($namakaryawan)));
+			    if (count($xnk)> $lkata) {
+			    	$ti = " ...";
+			    } else {
+			    	$ti = "";
+			    }
+			    $nk = implode(" ",array_splice($xnk,0,$lkata)).$ti;
 				?>
-				<div class="card m-1 float-left glass col-md-3">
-					<img src="../img/foto/<?php echo $foto; ?>" class="card-img-top img-thumbnail mt-3">
+				<div class="card m-1 float-left glass col-md-2">
+					<div class="mt-3" style="height: 200px;overflow: hidden;border: 3px solid #fff;border-radius: 5px;">
+						<img src="../img/foto/<?php echo $foto; ?>" class="card-img-top" style="height: 100%;object-fit: cover;">
+					</div>
 					<div class="card-body">
-						<h5 class="card-title"><?php echo $namakaryawan; ?></h5>
-						<p class="card-text"><?php echo $idkar; ?></p>
+						<h5 class="card-title"><?php echo $nk; ?></h5>
+						<p class="card-text small"><?php echo $idkar; ?></p>
 						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
 					</div>
 				</div>
 				<?php } ?>
 			</div>
-
-			<!--<div class="col-md-8 tbl">
-				<table class="jt table table-striped table-hover glass">
-					<thead>
-						<tr>
-							<th>ID Karyawan</th>
-							<th>Nama Karyawan</th>
-							<th>Detail</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<?php
-				 	$stmt = $db->prepare("SELECT * FROM karyawan ORDER BY namakaryawan ASC");
-			    	$stmt->execute();
-			    	While ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-					extract($row);
-					?>
-					<tbody>
-						<tr>
-							<td><?php echo $idkar; ?></td>
-							<td><?php echo $namakaryawan; ?></td>
-							<td><a href="view.php?id=<?php echo $idkar; ?>" style="color: #50c425">&#128064</a></td>
-							<td><a href="edit.php?id=<?php echo $idkar; ?>" style="color: #50c425">&#10002</a></td>
-						</tr>
-				
-					<?php
-					}
-				 	?>
-					</tbody>
-				</table>
-			</div> -->
 		</div>
 	</div>
 </body>

@@ -26,20 +26,17 @@
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-12">
-				<h1 class="text-center jt">Data Detail Karyawan <span><br><?php echo $namakaryawan; ?></span></h1>
+				<h1 class="text-center jt">Data Detail Karyawan <span><br><b><?php echo $namakaryawan; ?></b></span></h1>
 			</div>
 			<div class="col-md-3">
 				<div class="glass col-md-12 rounded mb-2 pb-2">
 					<h2 class="jt text-center">MENU</h2>
 					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
-					<a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
-					<a href="../products/index.php" class="btn-info btn mb-1 col-md-12" >&#129385; Daftar Produk</a>
-					<a href="../report/index.php" class="btn-secondary btn mb-1 col-md-12" >&#128195; Laporan</a>
 					<a href="index.php" class="btn-secondary btn mb-1 col-md-12" >&#127939; Back</a>
 					<a href="../user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
 				</div>
 			</div>
-			<div class="col-md-9 tbl">
+			<div class="col-md-8 tbl">
 				<table class="table table-striped glass jt">
 				<?php
 				$stmt = $db->prepare("SELECT * FROM karyawan WHERE idkar=$idview");
@@ -47,9 +44,11 @@
 			    	While ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 						extract($row); ?>
 								<tr>
-									<td class="d-flex justify-content-center" style="position: relative;">
-										<img src="../img/foto/<?php echo $foto; ?>" class="img-fluid" width="150vw">
-										<a href="#" class="btn btn-primary d-block mr-3" style="position: absolute; right: 0px;">&#10002</a>
+									<td colspan="3">
+										<div class="d-flex justify-content-center" style="position: relative;width: 300px;height: 300px;overflow: hidden;">
+											<img src="../img/foto/<?php echo $foto; ?>" class="mx-auto" style="width: auto;height: 100%;object-fit: cover;">
+											<button class="btn btn-primary d-block mr-1 mt-1" data-toggle="modal" data-target="#foto" style="position: absolute; right: 0px;">&#10002</button>
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -143,6 +142,36 @@
 				?>
 			</div>
 		</div>
+	</div>
+	<!-- Foto Karyawan -->
+	<div class="modal" id="foto">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Masukan Foto</h4>
+	        <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+        <form action="edit.php" method="POST" enctype="multipart/form-data">
+	      	<div class="modal-body">
+            <div class="form-group ">
+                <label for="foto">Pilih Foto <b><?php echo $namakaryawan; ?></b></label><br>
+                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+                <input type="file" name="foto">
+            </div>
+	      	</div>
+
+	      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-success" name="savefoto" value="Simpan" />
+		      </div>
+        </form>
+
+	    </div>
+	  </div>
 	</div>
 	<!-- Nama Karyawan -->
 	<div class="modal" id="namakaryawan">
@@ -313,37 +342,7 @@
                 <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
                 <input class="form-control" type="text" name="tempat" placeholder="<?php echo $tempat; ?>"><br>
                 <label for="ttgll">Tgl Lahir</label>
-                <input class="form-control" type="date" name="ttgll" placeholder="<?php echo $ttgll; ?>">
-            </div>
-	      	</div>
-
-	      <!-- Modal footer -->
-		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" name="savettgll" value="Simpan" />
-		      </div>
-        </form>
-
-	    </div>
-	  </div>
-	</div>
-	<!-- ttgll -->
-	<div class="modal" id="ttgll">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-
-	      <!-- Modal Header -->
-	      <div class="modal-header">
-	        <h4 class="modal-title">Tempat Tanggal Lahir</h4>
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	      </div>
-
-	      <!-- Modal body -->
-        <form action="edit.php" method="POST" enctype="multipart/form-data">
-	      	<div class="modal-body">
-            <div class="form-group ">
-                <label for="ttgll">Tempat Tgl Lahir</label>
-                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
-                <input class="form-control" type="text" name="ttgll" placeholder="<?php echo $ttgll; ?>">
+                <input class="datepicker" data-date-format="dd/mm/yyyy" type="date" name="ttgll">
             </div>
 	      	</div>
 
@@ -438,7 +437,7 @@
             <div class="form-group ">
                 <label for="tglmasuk">Masukan tanggal masuk</label>
                 <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
-                <input class="form-control" type="date" name="tglmasuk" placeholder="<?php echo $tglmasuk; ?>">
+                <input class="datepicker" data-date-format="dd/mm/yyyy" type="date" name="tglmasuk">
             </div>
 	      	</div>
 

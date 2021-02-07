@@ -121,8 +121,8 @@ if(isset($_POST['saveinput'])){
                     <div class="form-group ">
                         <label for="tempat">Tempat Lahir</label>
                         <input class="form-control" name="tempat" type="text">
-                        <label for="ttgll">Tanggal Lahir</label>
-                        <input class="form-control" name="ttgll" type="date">
+                        <label for="ttgll">Tanggal Lahir</label><br>
+                        <input class="datepicker" name="ttgll" type="date">
                     </div>
                     <div class="form-group ">
                         <label for="pendidikan">Pendidikan Terakhir</label>
@@ -139,7 +139,7 @@ if(isset($_POST['saveinput'])){
                     </div>
                     <div class="form-group ">
                         <label for="tglmasuk">Tanggal Masuk</label>
-                        <input class="form-control" name="tglmasuk" type="date">
+                        <input class="datepicker" name="tglmasuk" type="date">
                     </div>
                     <div class="form-group ">
                         <label for="status">Status Karyawan</label><br>
