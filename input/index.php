@@ -23,7 +23,7 @@ require_once("../user/auth.php");
 				<div class="col-md-12 rounded mb-2 pb-2 glass">
 					<h2 class="jt ext-light text-center">MENU</h2>
 					<a href="addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
-					<a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
+					<a href="../timeline.php" class="btn btn-info mb-1 col-md-12">&#127972; Dashboard</a>
 					<a href="../user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
 				</div>
 			</div>
@@ -48,7 +48,7 @@ require_once("../user/auth.php");
 					</div>
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $nk; ?></h5>
-						<p class="card-text small"><?php echo $idkar; ?></p>
+						<p class="card-text small"><?php echo $penempatan; ?></p>
 						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
 					</div>
 				</div>

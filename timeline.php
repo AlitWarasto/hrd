@@ -24,11 +24,8 @@
             <div class="col-md-3">
                 <div class="col-md-12 rounded mb-2 pb-2 glass">
                     <h2 class="jt ext-light text-center">MENU</h2>
-                    <a class="btn btn-success mb-1 col-md-12" href="input/index.php">Data Karyawan</a>
-                    <a href="input/addinput.php" class="btn btn-success mb-1 col-md-12">Input Baru</a>
-                    <a href="../outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
-                    <a href="../products/index.php" class="btn-info btn mb-1 col-md-12" >&#129385; Daftar Produk</a>
-                    <a href="../report/index.php" class="btn-secondary btn mb-1 col-md-12" >&#128195; Laporan</a>
+                    <a class="btn btn-success mb-1 col-md-12" href="input/index.php">&#128107; Data Karyawan</a>
+                    <a href="outlet/index.php" class="btn btn-info mb-1 col-md-12">&#127968; Daftar Outlet</a>
                     <a href="user/logout.php" class="btn btn-light col-md-12 border border-danger">Logout</a>
                 </div>
             </div>

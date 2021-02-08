@@ -93,7 +93,7 @@ if(isset($_POST['register'])){
     // jika query simpan berhasil, maka user sudah terdaftar
     // maka alihkan ke halaman login
     if($saved) {
-        header("Location: login.php");
+        header("Location: users/login.php");
     }
     
 }
@@ -105,7 +105,7 @@ if(isset($_POST['register'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register Inventory Panties Pizza</title>
+    <title>Register SIMPEG Panties Pizza</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -119,11 +119,8 @@ if(isset($_POST['register'])){
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-
-        <p>&larr; <a href="../index.php">Home</a>
-
-        <h4>Register Inv Panties Pizza</h4>
-        <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+        <h4>Register SIMPEG Panties Pizza</h4>
+        <p>Sudah punya akun? <a href="../index.php">Login di sini</a></p>
 
         <form action="" method="POST">
 

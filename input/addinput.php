@@ -153,8 +153,15 @@ if(isset($_POST['saveinput'])){
                     <div class="form-group ">
                         <label for="penempatan">Penempatan</label><br>
                         <select name="penempatan">
-                            <option value="Kantor Pusat">Kantor Pusat</option>
-                            <option value="Outlet">Outlet</option>
+                            <?php
+                                $otcon = $db->prepare("SELECT * FROM outlet");
+                                $otcon->execute();
+                                While ($otrow=$otcon->fetch(PDO::FETCH_ASSOC)){
+                                    extract($otrow); ?>
+                                    <option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
+                                <?php
+                                }
+                                ?>
                         </select>
                     </div>
                     <div class="form-group ">
