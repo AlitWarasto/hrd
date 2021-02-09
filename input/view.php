@@ -107,7 +107,13 @@
 								</tr>
 								<tr>
 									<td>Penempatan</td>
-									<td><?php echo $penempatan; ?></td>
+									<?php
+                    $otcon = $db->prepare("SELECT namaoutlet FROM outlet WHERE idoutlet=$penempatan");
+                    $otcon->execute();
+                    $otrow=$otcon->fetch(PDO::FETCH_ASSOC);
+                      extract($otrow);
+                  ?>
+									<td><?php echo $namaoutlet; ?></td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#penempatan">Edit</button></td>
 								</tr>
 								<tr>
@@ -500,9 +506,19 @@
         <form action="edit.php" method="POST" enctype="multipart/form-data">
 	      	<div class="modal-body">
             <div class="form-group ">
-                <label for="penempatan">Masukan Penempatan Karyawan</label>
-                <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
-                <input class="form-control" type="text" name="penempatan" placeholder="<?php echo $penempatan; ?>">
+              <label for="penempatan">Masukan Penempatan Karyawan : </label>
+              <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
+							<select name="penempatan">
+								<?php
+							    $otcon = $db->prepare("SELECT * FROM outlet");
+							    $otcon->execute();
+							    While ($otrow=$otcon->fetch(PDO::FETCH_ASSOC)){
+							        extract($otrow); ?>
+							        <option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
+							    <?php
+							    }
+							    ?>
+							</select>
             </div>
 	      	</div>
 

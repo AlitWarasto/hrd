@@ -28,9 +28,13 @@ if(isset($_POST['saveinput'])){
     $ext = pathinfo($foto, PATHINFO_EXTENSION);
     $newname = $idkar.'.'.$ext;
 
-    /* menyiapkan query */
-    $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
+    
+    $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, tempat, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
             VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :tempat, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji, :foto)";
+    /* menyiapkan query         
+    $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
+            VALUES ('".$idkar."','".$namakaryawan."','".$alamat."','".$domisili."','".$noktp."','".$nohp."','".$tempat."','".$ttgll."','".$pendidikan."','".$pernikahan."','".$tglmasuk."','".$status."','".$penempatan."','".$devisi."','".$jabatan."','".$cuti."','".$sp."','".$gaji."','".$foto."')";*/
+
     $stmt = $db->prepare($sql);
 
     /* bind parameter ke query */
@@ -59,15 +63,31 @@ if(isset($_POST['saveinput'])){
     /* eksekusi query untuk menyimpan ke database */
     $saved = $stmt->execute($params);
 
-    /* upload file ke destinasi folder */
-    move_uploaded_file($_FILES['foto']['tmp_name'], "../img/foto/".$newname);
 
-    /*  jika query simpan berhasil, maka user sudah terdaftar
-         maka alihkan ke halaman login
-    */
-    if($saved) {
-        header("Location: index.php");
+     function myCustomErrorHandler(int $errNo, string $errMsg, string $file, int $line) {
+        echo "Wow my custom error handler got #[$errNo] occurred in [$file] at line [$line]: [$errMsg]";
+        }
+    set_error_handler('myCustomErrorHandler');
+    
+    /*try*/
+    try {
+        $stmt->execute($params);
+        /*pindah foto yg sudah di upload*/
+        move_uploaded_file($_FILES['foto']['tmp_name'], "../img/foto/".$newname);
+        /*jika query simpan berhasil, maka user sudah terdaftar maka alihkan ke halaman login*/
+        header("Location: index.php?msg=sukses");
+    } catch (Throwable $e) {
+        echo "error";
+        echo 'And my error is: ' . $e->getMessage();
     }
+    /*
+    if($saved) {
+        header("Location: index.php?msg=sukses");
+    } else {
+        //set error handler
+        echo $db->errorno;
+        echo "error";
+    }*/
     
 }
 ?>
