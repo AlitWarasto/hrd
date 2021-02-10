@@ -93,7 +93,7 @@ if(isset($_POST['register'])){
     // jika query simpan berhasil, maka user sudah terdaftar
     // maka alihkan ke halaman login
     if($saved) {
-        header("Location: users/login.php");
+        header("Location: ../index.php");
     }
     
 }
