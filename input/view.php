@@ -26,7 +26,7 @@
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-12">
-				<h1 class="text-center jt">Data Detail Karyawan <span><br><b><?php echo $namakaryawan; ?></b></span></h1>
+				<h1 class="text-center jt">Data Detail Karyawan <span class="text-uppercase"><br><b><?php echo $namakaryawan; ?></b></span></h1>
 			</div>
 			<div class="col-md-3">
 				<div class="glass col-md-12 rounded mb-2 pb-2">
@@ -53,11 +53,11 @@
 								</tr>
 								<tr>
 									<td>ID Karyawan</td>
-									<td><?php echo $idkar; ?></td>
+									<td><?php echo "<h6><b>".$idkar."</b></h6>"; ?></td>
 								</tr>
 								<tr>
 									<td>Nama Karyawan</td>
-									<td><?php echo $namakaryawan; ?></td>
+									<td><?php echo "<h4><b>".$namakaryawan."</b></h4>"; ?></td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#namakaryawan">Edit</button></td>
 								</tr>
 								<tr>

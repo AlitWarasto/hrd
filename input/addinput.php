@@ -112,111 +112,120 @@ if(isset($_POST['saveinput'])){
             <h1 class="jt">Input Karyawan Baru<span><br>Panties Pizza</span></h1>
         </div>
     	<div class=" d-flex justify-content-center">
-            <div class="glass col-md-4 pb-3 pt-3 rounded rounded-sm jt">
+            <div class="glass col-md-12 mb-3 pb-3 pt-3 rounded rounded-sm jt">
         		<form action="" method="POST" enctype="multipart/form-data" id="addinput">
-                    <div class="form-group ">
-                        <label for="namakaryawan">Nama Karyawan</label>
-                        <input class="form-control" type="text" name="namakaryawan" placeholder="Nama Karyawan">
+                    <div class="col-md-4 float-left">
+                        <div class="form-group ">
+                            <label for="namakaryawan">Nama Karyawan</label>
+                            <input class="form-control" type="text" name="namakaryawan" placeholder="Nama Karyawan">
+                        </div>
+                        <div class="form-group ">
+                            <label for="foto">Foto Karyawan</label>
+                            <input type="file" name="foto">
+                        </div>
+                        <div class="form-group ">
+                            <label for="alamat">Alamat</label>
+                            <textarea class="form-control" type="text" name="alamat" placeholder="Alamat Asal"></textarea>
+                        </div>
+                        <div class="form-group ">
+                            <label for="domisili">Domisili</label>
+                            <textarea class="form-control" type="text" name="domisili" placeholder="Domisili Sekarang"></textarea>
+                        </div>
+                        <div class="form-group ">
+                            <label for="noktp">Nomor KTP</label>
+                            <input class="form-control" type="text" name="noktp" placeholder="Nomor KTP" id="noktp">
+                        </div>
+                        <div class="form-group ">
+                            <label for="nohp">Nomor Handphone</label>
+                            <input class="form-control" type="text" name="nohp" placeholder="Nomor Handphone">
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="foto">Foto Karyawan</label>
-                        <input type="file" name="foto">
+                    <div class="col-md-4 float-left">
+                        <div class="form-group ">
+                            <label for="tempat">Tempat Lahir</label>
+                            <input class="form-control" name="tempat" type="text" placeholder="Tempat Kelahiran">
+                            <label for="ttgll">Tanggal Lahir</label><br>
+                            <input class="datepicker" name="ttgll" type="date">
+                        </div>
+                        <div class="form-group ">
+                            <label for="pendidikan">Pendidikan Terakhir</label>
+                            <input class="form-control" name="pendidikan" type="text" placeholder="Pendidikan Terakhir">
+                        </div>
+                        <div class="form-group ">
+                            <label for="pernikahan">Status Pernikahan</label><br>
+                            <select name="pernikahan">
+                                <option value="Menikah">Menikah</option>
+                                <option value="Belum Menikah">Belum Menikah</option>
+                                <option value="Janda">Janda</option>
+                                <option value="Duda">Duda</option>
+                            </select> 
+                        </div>
+                        <div class="form-group ">
+                            <label for="tglmasuk">Tanggal Masuk</label><br>
+                            <input class="datepicker" name="tglmasuk" type="date">
+                        </div>
+                        <div class="form-group ">
+                            <label for="status">Status Karyawan</label><br>
+                            <select name="status">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non Aktif">Non Aktif</option>
+                                <option value="Resign">Resign</option>
+                                <option value="PHK">PHK</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="alamat">Alamat</label>
-                        <textarea class="form-control" type="text" name="alamat" placeholder="Alamat Asal"></textarea>
-                    </div>
-                    <div class="form-group ">
-                        <label for="domisili">Domisili</label>
-                        <textarea class="form-control" type="text" name="domisili" placeholder="Domisili Sekarang"></textarea>
-                    </div>
-                    <div class="form-group ">
-                        <label for="noktp">Nomor KTP</label>
-                        <input class="form-control" type="text" name="noktp" placeholder="Nomor KTP" id="noktp">
-                    </div>
-                    <div class="form-group ">
-                        <label for="nohp">Nomor Handphone</label>
-                        <input class="form-control" type="text" name="nohp" placeholder="Nomor Handphone">
-                    </div>
-                    <div class="form-group ">
-                        <label for="tempat">Tempat Lahir</label>
-                        <input class="form-control" name="tempat" type="text">
-                        <label for="ttgll">Tanggal Lahir</label><br>
-                        <input class="datepicker" name="ttgll" type="date">
-                    </div>
-                    <div class="form-group ">
-                        <label for="pendidikan">Pendidikan Terakhir</label>
-                        <input class="form-control" name="pendidikan" type="text" placeholder="Pendidikan Terakhir">
-                    </div>
-                    <div class="form-group ">
-                        <label for="pernikahan">Status Pernikahan</label><br>
-                        <select name="pernikahan">
-                            <option value="Menikah">Menikah</option>
-                            <option value="Belum Menikah">Belum Menikah</option>
-                            <option value="Janda">Janda</option>
-                            <option value="Duda">Duda</option>
-                        </select> 
-                    </div>
-                    <div class="form-group ">
-                        <label for="tglmasuk">Tanggal Masuk</label>
-                        <input class="datepicker" name="tglmasuk" type="date">
-                    </div>
-                    <div class="form-group ">
-                        <label for="status">Status Karyawan</label><br>
-                        <select name="status">
-                            <option value="Aktif">Aktif</option>
-                            <option value="Non Aktif">Non Aktif</option>
-                            <option value="Resign">Resign</option>
-                            <option value="PHK">PHK</option>
-                        </select>
-                    </div>
-                    <div class="form-group ">
-                        <label for="penempatan">Penempatan</label><br>
-                        <select name="penempatan">
-                            <?php
-                                $otcon = $db->prepare("SELECT * FROM outlet");
-                                $otcon->execute();
-                                While ($otrow=$otcon->fetch(PDO::FETCH_ASSOC)){
-                                    extract($otrow); ?>
-                                    <option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
+                    <div class="col-md-4 float-left">
+                        <div class="form-group ">
+                            <label for="penempatan">Penempatan</label><br>
+                            <select name="penempatan">
                                 <?php
-                                }
-                                ?>
-                        </select>
+                                    $otcon = $db->prepare("SELECT * FROM outlet");
+                                    $otcon->execute();
+                                    While ($otrow=$otcon->fetch(PDO::FETCH_ASSOC)){
+                                        extract($otrow); ?>
+                                        <option value="<?php echo $idoutlet; ?>"><?php echo $namaoutlet; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label for="devisi">Devisi</label><br>
+                            <select name="devisi">
+                                <option value="Operasional">Operasional</option>
+                                <option value="Accounting">Accounting</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="HRD">HRD</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label for="jabatan">Jabatan</label>
+                            <input class="form-control" type="text" name="jabatan" placeholder="Jabatan">
+                        </div>
+                        <div class="form-group ">
+                            <label for="cuti">Cuti</label>
+                            <input class="form-control" type="text" name="cuti" placeholder="Sisa Cuti">
+                        </div>
+                        <div class="form-group ">
+                            <label for="sp">Surat Peringatan</label><br>
+                            <select name="sp">
+                                <option value="Tidak Ada">Tidak Ada</option>
+                                <option value="Surat Teguran">Surat Teguran</option>
+                                <option value="SP 1">SP 1</option>
+                                <option value="SP 2">SP 2</option>
+                                <option value="SP 3">SP 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label for="gaji">Gaji</label>
+                            <input class="form-control" type="text" name="gaji" placeholder="Gaji">
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="devisi">Devisi</label><br>
-                        <select name="devisi">
-                            <option value="Operasional">Operasional</option>
-                            <option value="Accounting">Accounting</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="HRD">HRD</option>
-                        </select>
+                    <hr style="clear: both;">
+                    <div class="col-md-4 float-right">
+            			<input type="submit" class="btn btn-success float-right" name="saveinput" value="Simpan" />
+                        <a class="btn btn-danger float-right mr-4" href="../input/index.php">Cancel</a>
                     </div>
-                    <div class="form-group ">
-                        <label for="jabatan">Jabatan</label>
-                        <input class="form-control" type="text" name="jabatan" placeholder="Jabatan">
-                    </div>
-                    <div class="form-group ">
-                        <label for="cuti">cuti</label>
-                        <input class="form-control" type="text" name="cuti" placeholder="Sisa Cuti">
-                    </div>
-                    <div class="form-group ">
-                        <label for="sp">Surat Peringatan</label><br>
-                        <select name="sp">
-                            <option value="Tidak Ada">Tidak Ada</option>
-                            <option value="Surat Teguran">Surat Teguran</option>
-                            <option value="SP 1">SP 1</option>
-                            <option value="SP 2">SP 2</option>
-                            <option value="SP 3">SP 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group ">
-                        <label for="gaji">Gaji</label>
-                        <input class="form-control" type="text" name="gaji" placeholder="Gaji">
-                    </div>
-        			<input type="submit" class="btn btn-success btn-block " name="saveinput" value="Simpan" />
-                    <a class="btn btn-danger btn-block " href="../input/index.php">Cancel</a>
         		</form>
     	   </div>
         </div>

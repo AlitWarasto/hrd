@@ -48,7 +48,7 @@ require_once("../user/auth.php");
 					</div>
 					<div class="card-body">
 						<div class="mb-2" style="height: 100px; overflow: hidden;">
-							<h5 class="card-title text-capitalize"><?php echo $nk; ?></h5>
+							<h5 class="card-title"><?php echo $nk; ?></h5>
 							<?php
 								$ot = $db->prepare("SELECT namaoutlet FROM outlet WHERE idoutlet=$penempatan");
 		    				$ot->execute();
@@ -57,7 +57,7 @@ require_once("../user/auth.php");
 							?>
 							<p class="card-text small"><?php echo $namaoutlet; ?></p>
 						</div>
-						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
+						<a onclick="return confirm('HAPUS PERMANEN <?php echo $namakaryawan; ?>?')" href="delete.php?id=<?php echo $idkar; ?>" class="btn btn-danger" >HAPUS?!</a>
 					</div>
 				</div>
 				<?php } ?>
