@@ -49,16 +49,14 @@ require_once("../user/auth.php");
 					<div class="card-body">
 						<div class="mb-2" style="height: 100px; overflow: hidden;">
 							<h5 class="card-title"><?php echo $nk; ?></h5>
-							<p class="card-text small"><?php echo $penempatan; ?></p>
+							<?php
+								$ot = $db->prepare("SELECT namaoutlet FROM outlet WHERE idoutlet=$penempatan");
+		    				$ot->execute();
+		    				$otrow=$ot->fetch(PDO::FETCH_ASSOC);
+		    				extract($otrow);
+							?>
+							<p class="card-text small"><?php echo $namaoutlet; ?></p>
 						</div>
-						<h5 class="card-title"><?php echo $nk; ?></h5>
-						<?php
-              $otcon = $db->prepare("SELECT namaoutlet FROM outlet WHERE idoutlet=$penempatan");
-              $otcon->execute();
-              $otrow=$otcon->fetch(PDO::FETCH_ASSOC);
-                extract($otrow);
-            ?>
-						<p class="card-text small"><?php echo $namaoutlet; ?></p>
 						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
 					</div>
 				</div>

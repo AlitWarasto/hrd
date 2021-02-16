@@ -82,7 +82,15 @@
 								</tr>
 								<tr>
 									<td>Tempat & tgl Lahir</td>
-									<td><?php $date = date_create($ttgll); echo $tempat.", ". date_format($date,"d-F-Y"); ?></td>
+									<td>
+										<?php
+											if ($ttgll==="") {
+												echo "Tanggal Lahir Belum Dimasukan";
+											} else {
+												$date = date_create($ttgll); echo $tempat.", ". date_format($date,"d-F-Y"); 
+											}
+										?>
+									</td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#ttgll">Edit</button></td>
 								</tr>
 								<tr>
