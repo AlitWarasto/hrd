@@ -138,7 +138,16 @@
 								</tr>
 								<tr>
 									<td>Gaji Bulan <?php echo date("F Y"); ?></td>
-									<td><?php echo "Rp. " .number_format($gaji,2);  ?></td>
+									<td>
+										<?php
+											if ($gaji==="") {
+												echo "Gaji Belum Dimasukan";
+											} else {
+												echo "Rp. " .number_format($gaji,2);
+											}
+											
+										?>
+									</td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#gaji">Edit</button></td>
 								</tr>
 							</table>

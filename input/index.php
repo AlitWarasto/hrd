@@ -47,8 +47,10 @@ require_once("../user/auth.php");
 						<img src="../img/foto/<?php echo $foto; ?>" class="card-img-top" style="height: 100%;object-fit: cover;">
 					</div>
 					<div class="card-body">
-						<h5 class="card-title"><?php echo $nk; ?></h5>
-						<p class="card-text small"><?php echo $penempatan; ?></p>
+						<div class="mb-2" style="height: 100px; overflow: hidden;">
+							<h5 class="card-title"><?php echo $nk; ?></h5>
+							<p class="card-text small"><?php echo $penempatan; ?></p>
+						</div>
 						<a href="view.php?id=<?php echo $idkar; ?>" class="btn btn-primary">Lihat Profil</a>
 					</div>
 				</div>

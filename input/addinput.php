@@ -113,7 +113,7 @@ if(isset($_POST['saveinput'])){
         </div>
     	<div class=" d-flex justify-content-center">
             <div class="glass col-md-4 pb-3 pt-3 rounded rounded-sm jt">
-        		<form action="" method="POST" enctype="multipart/form-data">
+        		<form action="" method="POST" enctype="multipart/form-data" id="addinput">
                     <div class="form-group ">
                         <label for="namakaryawan">Nama Karyawan</label>
                         <input class="form-control" type="text" name="namakaryawan" placeholder="Nama Karyawan">
@@ -132,7 +132,7 @@ if(isset($_POST['saveinput'])){
                     </div>
                     <div class="form-group ">
                         <label for="noktp">Nomor KTP</label>
-                        <input class="form-control" type="text" name="noktp" placeholder="Nomor KTP">
+                        <input class="form-control" type="text" name="noktp" placeholder="Nomor KTP" id="noktp">
                     </div>
                     <div class="form-group ">
                         <label for="nohp">Nomor Handphone</label>
@@ -221,5 +221,15 @@ if(isset($_POST['saveinput'])){
     	   </div>
         </div>
     </div>
+    <script type="text/javascript">
+    $('form').submit(function () {
+        var name = $.trim($('#noktp').val());
+        if (name === '') {
+            alert('Nomor KTP Tidak Boleh Kosong!');
+            $('#noktp').focus();
+            return false;
+        }
+    });
+    </script>
 </body>
 </html>
