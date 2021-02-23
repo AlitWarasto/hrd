@@ -15,6 +15,7 @@ if (isset($_POST['savenk'])) {
         ?>
         <script>alert('File foto tidak boleh kosong');location.replace('view.php?id='+<?php echo $idnk; ?>);</script>
     <?php
+    return(false);
     }
     $cfoto = $db->prepare("SELECT foto FROM karyawan WHERE idkar=$idnk");
     $cfoto->execute();
