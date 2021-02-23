@@ -12,7 +12,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../style.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <?php
+  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+	header('Cache-Control: no-store, no-cache, must-revalidate');
+	header('Cache-Control: post-check=0, pre-check=0', FALSE);
+	header('Pragma: no-cache');
+  ?>
 </head>
 <body>
 	<?php
@@ -57,7 +63,7 @@
 								</tr>
 								<tr>
 									<td>Nama Karyawan</td>
-									<td><?php echo "<h4><b>".$namakaryawan."</b></h4>"; ?></td>
+									<td><?php echo '<h4 class="text-capitalize"><b>'.$namakaryawan.'</b></h4>'; ?></td>
 									<td><button class="btn btn-primary" data-toggle="modal" data-target="#namakaryawan">Edit</button></td>
 								</tr>
 								<tr>
@@ -181,7 +187,7 @@
         <form action="edit.php" method="POST" enctype="multipart/form-data">
 	      	<div class="modal-body">
             <div class="form-group ">
-                <label for="foto">Pilih Foto <b><?php echo $namakaryawan; ?></b></label><br>
+                <label for="foto" class="text-capitalize">Pilih Foto <b><?php echo $namakaryawan; ?></b></label><br>
                 <input type="hidden" name="idnk" value="<?php echo $idkar; ?>">
                 <input type="file" name="foto">
             </div>

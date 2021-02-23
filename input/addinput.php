@@ -26,8 +26,11 @@ if(isset($_POST['saveinput'])){
     /*=== upload file ===*/
     $foto = $_FILES['foto']['name'];
     $ext = pathinfo($foto, PATHINFO_EXTENSION);
-    $newname = $idkar.'.'.$ext;
-
+    if ($foto=="" or $ext=="") {
+        $newname = "kosong";
+    } else {
+        $newname = $idkar.'.'.$ext;
+    }
     
     $sql = "INSERT INTO karyawan (idkar, namakaryawan, alamat, domisili, noktp, nohp, tempat, ttgll, pendidikan, pernikahan, tglmasuk, status, penempatan, devisi, jabatan, cuti, sp, gaji, foto) 
             VALUES (:idkar, :namakaryawan, :alamat, :domisili, :noktp, :nohp, :tempat, :ttgll, :pendidikan, :pernikahan, :tglmasuk, :status, :penempatan, :devisi, :jabatan, :cuti, :sp, :gaji, :foto)";

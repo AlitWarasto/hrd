@@ -10,21 +10,25 @@ if (isset($_POST['savenk'])) {
     header('location: view.php?id='.$idnk);
 } elseif(isset($_POST['savefoto'])) {  /*Edit File FOTO*/
     $idnk = $_POST['idnk'];
-    $nfoto = $_FILES['foto']['name'];
-    if ($nfoto=="") {
+    $nfoto = $_FILES['foto']['name']; /*Ambil File FOTO*/
+    if ($nfoto=="") { /*cek File FOTO jika kosong kembali*/
         ?>
         <script>alert('File foto tidak boleh kosong');location.replace('view.php?id='+<?php echo $idnk; ?>);</script>
     <?php
     return(false);
     }
+
     $cfoto = $db->prepare("SELECT foto FROM karyawan WHERE idkar=$idnk");
     $cfoto->execute();
     $frow = $cfoto->fetch(PDO::FETCH_ASSOC);
     extract($frow);
-    $ffoto = "../img/foto/".$foto;
-    $ext = pathinfo($nfoto, PATHINFO_EXTENSION);
-    $newname = $idnk.'.'.$ext;
-    if (isset($foto) && $foto==$newname) {
+
+
+    $ext = pathinfo($nfoto, PATHINFO_EXTENSION); /*Cek file ekstensi*/
+    $newname = $idnk.'.'.$ext; /*Gabung id & ekstensi jadi nama foto di database */
+    $ffoto = "../img/foto/".$newname;
+
+    if (isset($foto) && $foto==$newname) { /* cek file lama*/
         if (file_exists($ffoto)) {
             unlink($ffoto); /*Delete file lama*/
             move_uploaded_file($_FILES['foto']['tmp_name'], $ffoto);
@@ -32,25 +36,22 @@ if (isset($_POST['savenk'])) {
                 header('location: view.php?id='.$idnk);
             } else {
                 ?>
-                <script type='text/javascript'>alert('Upload Foto GAGAL');location.replace('view.php?id='".$idnk.");</script>
+                <script>alert('Upload Foto GAGAL');location.replace('view.php?id='".$idnk.");</script>
                 <?php
             }
         }
     } else {
-        $ffoto = "../img/foto/".$newname;
         $infoto = $db->prepare("UPDATE `karyawan` SET `foto` = '$newname' WHERE `karyawan`.`idkar`=$idnk");
         $infoto->execute();
         move_uploaded_file($_FILES['foto']['tmp_name'], $ffoto);
         if (file_exists($ffoto)) {
             header('location: view.php?id='.$idnk);
         } else {
-            $handle = "<script type='text/javascript'>
-                      alert('Upload Foto GAGAL');
-                      location.replace('view.php?id='".$idnk.");
-                    </script>";
-            echo $handle;
+            ?>
+            <script>alert('Upload Foto GAGAL');location.replace('view.php?id='".$idnk.");</script>";
+            <?php
         }
-    } 
+    }
 } elseif(isset($_POST['savealamat'])) {
     $idnk = $_POST['idnk'];
     $updk = $_POST['alamat'];
