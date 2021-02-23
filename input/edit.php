@@ -31,11 +31,9 @@ if (isset($_POST['savenk'])) {
             if (file_exists($ffoto)) {
                 header('location: view.php?id='.$idnk);
             } else {
-                $handle = "<script type='text/javascript'>
-                          alert('Upload Foto GAGAL');
-                          location.replace('view.php?id='".$idnk.");
-                        </script>";
-                echo $handle;
+                ?>
+                <script type='text/javascript'>alert('Upload Foto GAGAL');location.replace('view.php?id='".$idnk.");</script>
+                <?php
             }
         }
     } else {
