@@ -27,7 +27,7 @@ if(isset($_POST['saveinput'])){
     $foto = $_FILES['foto']['name'];
     $ext = pathinfo($foto, PATHINFO_EXTENSION);
     if ($foto=="" or $ext=="") {
-        $newname = "kosong";
+        $newname = "kosong.png";
     } else {
         $newname = $idkar.'.'.$ext;
     }

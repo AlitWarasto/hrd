@@ -11,6 +11,11 @@ require_once("../user/auth.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			  crossorigin="anonymous">
+  </script>
 	<link rel="stylesheet" type="text/css" href="../style.css">
 	<?php
 	header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -20,6 +25,10 @@ require_once("../user/auth.php");
   ?>
 </head>
 <body>
+	<div class="loader">
+		<div></div>
+	</div>
+	<div class="content">
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-12">
@@ -70,5 +79,12 @@ require_once("../user/auth.php");
 			</div>
 		</div>
 	</div>
+	</div>
+	<script>
+    $(window).on('load',function(){
+        $(".loader").fadeOut(1500);
+        $(".content").fadeIn(1500);
+    });
+</script>
 </body>
 </html>
